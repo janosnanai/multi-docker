@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t jnanai/client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true jnanai/client-test npm test -- run
+
+after_success:
+  - docker build -t jnanai/multi-client ./client
+  - docker build -t jnanai/multi-nginx ./nginx
+  - docker build -t jnanai/multi-server ./server
+  - docker build -t jnanai/multi-worker ./worker
