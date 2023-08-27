@@ -22,6 +22,7 @@ const router = createBrowserRouter(routerConfig);
 function RootLayout() {
   return (
     <>
+      <h1>Fib Calculator</h1>
       <div className="nav">
         <Link to="/">Home</Link>
         <Link to="/otherpage">Other Page</Link>
